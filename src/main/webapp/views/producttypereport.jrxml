@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report6" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="23876298-f05f-428a-92e7-c06a0d91dcc6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="34"/>
+	<parameter name="reportTitle" class="java.lang.String"/>
+	<field name="producttypename" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="producttypesalemoney" class="java.lang.Double"/>
+	<sortField name="producttypesalemoney" order="Descending"/>
+	<variable name="producttypesalemoneycount" class="java.lang.Double" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{producttypesalemoney}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="62" splitType="Stretch">
+			<textField>
+				<reportElement x="69" y="0" width="446" height="54" uuid="f965efc2-edf2-4f73-9c31-b0a2d3bacfae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="楷体" size="22" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{reportTitle}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="0" width="157" height="42" uuid="842da295-30bb-4a40-8252-234935c4a6bd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="楷体" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[产品类别]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="0" width="182" height="42" uuid="6b01203c-72d2-4468-8cec-a846301a0456"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="楷体" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[销售额小计]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="41" splitType="Stretch">
+			<textField>
+				<reportElement x="100" y="6" width="157" height="35" uuid="af08adb3-a667-493b-bfd7-982b7d041c43"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="楷体" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producttypename}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="292" y="6" width="182" height="35" uuid="91601c10-733f-412b-b965-785f9b6fd922"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="楷体" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producttypesalemoney}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="29" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="0" width="157" height="42" uuid="e21713e1-9c87-4cf5-b6f5-c8bf44b23afe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="楷体" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[总计:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="292" y="0" width="182" height="42" uuid="b5f78d1a-c35c-4e50-b5de-875df03e2e37"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="楷体" size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{producttypesalemoneycount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

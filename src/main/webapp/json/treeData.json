@@ -1,0 +1,75 @@
+[{
+              "id":1,
+              "text":"产品管理",
+              "state":"closed",
+              "children":[{
+                     "id":11,
+                     "text":"产品类别",
+                     "attributes":{
+                     "url":"/allright-git/views/producttype.jsp"
+                     }
+              },{
+                     "id":12,
+                     "text":"产品",
+                     "attributes":{
+                     "url":"/allright-git/views/product.jsp"
+                     }
+              }]
+       },{
+               "id":4,
+              "text":"客户管理",
+              "state":"closed",
+              "children":[{
+                     "id":41,
+                     "text":"客户",
+                     "attributes":{
+                     "url":"/allright-git/views/customer.jsp"
+                     }
+              }]
+},
+{
+              "id":3,
+              "text":"销售管理",
+              "state":"closed",
+              "children":[{
+                     "id":31,
+                     "text":"销售开单",
+                     "attributes":{
+                     "url":"/allright-git/views/sale.jsp"
+                     }
+              },{
+                     "id":32,
+                     "text":"挂账管理",
+                     "attributes":{
+                     "url":"/allright-git/views/hangcredit.jsp"
+                     }
+              }]
+       }
+,
+{
+              "id":4,
+              "text":"退货管理",
+              "state":"closed",
+              "children":[{
+                     "id":41,
+                     "text":"退货",
+                     "attributes":{
+                     "url":"/allright-git/views/salereturn.jsp"
+                     }
+              }]
+       }
+       ,
+{
+              "id":4,
+              "text":"关于自己",
+              "state":"closed",
+              "children":[{
+                     "id":41,
+                     "text":"你的账户权限",
+                     "attributes":{
+                     "url":"/allright-git/views/userabout.action"
+                     }
+              }]
+       }
+
+]

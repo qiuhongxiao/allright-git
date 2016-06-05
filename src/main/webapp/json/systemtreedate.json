@@ -1,0 +1,43 @@
+[{
+              "id":1,
+              "text":"用户管理",
+              "state":"closed",
+              "children":[{
+                     "id":11,
+                     "text":"用户管理",
+                     "attributes":{
+                     "url":"/allright-git/views/usermanage.jsp"
+                     }
+              }]
+       },{
+               "id":4,
+              "text":"角色管理",
+              "state":"closed",
+              "children":[{
+                     "id":41,
+                     "text":"角色管理",
+                     "attributes":{
+                     "url":"/allright-git/views/userrolemanage.jsp"
+                     }
+              }]
+},
+{
+               "id":4,
+              "text":"报表管理",
+              "state":"closed",
+              "children":[{
+                     "id":41,
+                     "text":"月销售总额统计",
+                     "attributes":{
+                     "url":"/allright-git/views/salemonthcountreport.jsp"
+                     }
+              },
+              {
+                     "id":42,
+                     "text":"产品类别销售统计",
+                     "attributes":{
+                     "url":"/allright-git/views/producttypereport.jsp"
+                     }
+              }]
+}
+]

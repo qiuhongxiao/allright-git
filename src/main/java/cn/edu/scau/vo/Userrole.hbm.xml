@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-26 16:21:21 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.edu.scau.vo.Userrole" table="USERROLE">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+        <property name="rolename" type="java.lang.String">
+            <column name="ROLENAME" />
+        </property>
+        <property name="rolecreatetime" type="java.sql.Timestamp">
+            <column name="ROLECREATETIME" />
+        </property>
+        <property name="rolecreator" type="java.lang.String">
+            <column name="ROLECREATOR" />
+        </property>
+        <property name="reportmanage" type="java.lang.String">
+            <column name="REPORTMANAGE" />
+        </property>
+        <property name="basedatamanage" type="java.lang.String">
+            <column name="BASEDATAMANAGE" />
+        </property>
+        <property name="salereturn" type="java.lang.String">
+            <column name="SALERETURN" />
+        </property>
+        <property name="hangcredit" type="java.lang.String">
+            <column name="HANGCREDIT" />
+        </property>
+        <property name="hangpay" type="java.lang.String">
+            <column name="HANGPAY" />
+        </property>
+        <property name="permissionmanage" type="java.lang.String">
+            <column name="PERMISSIONMANAGE" />
+        </property>
+        <property name="sale" type="java.lang.String">
+            <column name="SALE" />
+        </property>
+    </class>
+</hibernate-mapping>

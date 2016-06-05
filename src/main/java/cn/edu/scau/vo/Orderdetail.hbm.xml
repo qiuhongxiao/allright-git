@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-26 16:21:21 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.edu.scau.vo.Orderdetail" table="ORDERDETAIL">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+        <property name="order_no" type="java.lang.String">
+            <column name="ORDER_NO" />
+        </property>
+        <property name="product_no" type="java.lang.String">
+            <column name="PRODUCT_NO" />
+        </property>
+        <property name="productname" type="java.lang.String">
+            <column name="PRODUCTNAME" />
+        </property>
+        <property name="price" type="double">
+            <column name="PRICE" />
+        </property>
+        <property name="saleprice" type="double">
+            <column name="SALEPRICE" />
+        </property>
+        <property name="discount" type="double">
+            <column name="DISCOUNT" />
+        </property>
+        <property name="quantity" type="int">
+            <column name="QUANTITY" />
+        </property>
+        <property name="saletime" type="java.lang.String">
+            <column name="SALETIME" />
+        </property>
+    </class>
+</hibernate-mapping>

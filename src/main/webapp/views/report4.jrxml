@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="myReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6e3c73d1-3132-4f67-9117-23ffbf09514c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Thu Jun 04 20:49:45 CST 2015\ncallouts.4.text=This set of text fields are placed in the Detail band, which is printed once for each record. Each text field prints the value of an expression. In this case all the expressions refer to a fields.\ncallouts.4.bounds=23,224,209,107\ncallouts.1.text=This is a static text placed in the Title band, which is printed only once.\ncallouts.3.pins=176,101;490,89;\ncallouts.5.text=Use the Sample Database (HSQLDB test) datasource to run this report.\nTo run the database, select Help &gt; Samples &gt; Run Sample Database.\ncallouts.3.bounds=272,218,170,92\ncallouts.2.text=In the Page Footer band are present two textfields exposing the built-in variable PAGE_NUMBER using two different evaluation time to obtain the text Page X of Y. The text fields have evaluation time &quot;now&quot; and &quot;report&quot;.\ncallouts.4.pins=29,101;\ncallouts.2.bounds=493,218,209,114\ncallouts.1.pins=507,32;\ncallouts.1.bounds=648,8,169,70\ncallouts.3.text=The text fields for the date and the freight have a special pattern to format the date and the numeric value\ncallouts.2.pins=537,121;\ncallouts.5.bounds=624,82,215,83"/>
+	<property name="ireport.background.image.properties" value="true,true,0.25,-8,-8,0,0,256,376"/>
+	<parameter name="ReportTitle" class="java.lang.String"/>
+	<parameter name="Year" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="username" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="password" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="userrole_rolename" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="75" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="71" height="20" uuid="bd5d8669-9754-41d7-b3a8-ceb97747292b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{ReportTitle}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="71" height="20" uuid="ba056070-bcf4-4300-854f-fcbe53e22692"/>
+				<text><![CDATA[$P{Year}]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="71" y="0" width="100" height="20" uuid="ea51e8e8-36ef-4d78-9ff9-3641e11b11fd"/>
+				<text><![CDATA[sdlkfjk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="171" y="0" width="154" height="20" uuid="efa6febb-e8e9-4039-8088-535230b012e3"/>
+				<text><![CDATA[的所发生的]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="325" y="0" width="190" height="20" uuid="c3418e07-c9f3-4dc2-b81a-54e2fa0aeee1"/>
+				<text><![CDATA[sdfskl]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="71" height="20" uuid="482eecef-04e1-4a3c-8962-8714e8cbedfa"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="71" y="0" width="100" height="20" uuid="3994b459-10ec-4477-b395-aab42f434d07"/>
+				<textFieldExpression><![CDATA[$F{username}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement x="325" y="0" width="190" height="20" uuid="a500ab84-2c0c-42bf-8812-5f4710ff1457"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{password}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="171" y="0" width="154" height="20" uuid="7c5ef835-84ba-4169-b78d-c047f2a5f05c"/>
+				<textFieldExpression><![CDATA[$F{userrole_rolename}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

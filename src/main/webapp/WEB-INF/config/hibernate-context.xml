@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
+	xmlns:aop="http://www.springframework.org/schema/aop" default-autowire="byName"
+	default-lazy-init="true">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 加载资源文件 其中包含变量信息，必须在Spring配置文件的最前面加载，即第一个加载 -->
+	<context:property-placeholder location="classpath:database.properties" />
+
+
+	<context:annotation-config />
+	<!-- 扫描包 -->
+	<context:component-scan base-package="cn.edu.scau.base.dao" />
+	<context:component-scan base-package="cn.edu.scau.dao" />
+	<context:component-scan base-package="cn.edu.scau.service.Impl" />
+
+	<!-- 数据源配置 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="${database.url}" />
+		<property name="username" value="${database.user}" />
+		<property name="password" value="${database.password}" />
+		<!-- <property name="defaultAutoCommit" value="true"/> -->
+	</bean>
+
+	<!-- 配置Hibernate4 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="mappingResources">
+			<list>
+				<value>cn\edu\scau\vo\Product.hbm.xml</value>
+				<value>cn\edu\scau\vo\Producttype.hbm.xml</value>
+				<value>cn\edu\scau\vo\User.hbm.xml</value>
+				<value>cn\edu\scau\vo\Bill.hbm.xml</value>
+				<value>cn\edu\scau\vo\Orderdetail.hbm.xml</value>
+				<value>cn\edu\scau\vo\Payment.hbm.xml</value>
+				<value>cn\edu\scau\vo\Saleorder.hbm.xml</value>
+				<value>cn\edu\scau\vo\Serialnumber.hbm.xml</value>
+				<value>cn\edu\scau\vo\Customer.hbm.xml</value>
+				<value>cn\edu\scau\vo\Userrole.hbm.xml</value>
+				<value>cn\edu\scau\vo\Salereturndetail.hbm.xml</value>
+				<value>cn\edu\scau\vo\Salereturn.hbm.xml</value>
+
+
+			</list>
+		</property>
+		<!-- <property name="packagesToScan"> <list> <value>cn.edu.scau.vo</value> 
+			</list> </property> -->
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<!-- <prop key="current_session_context_class">thread</prop> -->
+				<!-- <prop key="hibernate.connection.autocommit">true</prop> -->
+			</props>
+		</property>
+	</bean>
+
+	<!-- <bean name="openSessionInViewInterceptor" class="org.springframework.orm.hibernate4.support.OpenSessionInViewInterceptor"> 
+		<property name="sessionFactory"> <ref bean="sessionFactory" /> </property> 
+		<property name="flushMode" value="1"/> <property name="singleSession" value="false" 
+		/> </bean> -->
+
+	<!-- 配置事务管理器 -->
+	<bean id="hibernateTransactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- 配置事务，使用代理的方式 -->
+	<!-- <bean id="transactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" 
+		abstract="true"> <property name="transactionManager" ref="hibernateTransactionManager"></property> 
+		<property name="transactionAttributes"> <props> <prop key="add*">PROPAGATION_REQUIRED,-Exception</prop> 
+		<prop key="modify*">PROPAGATION_REQUIRED,-myException</prop> <prop key="del*">PROPAGATION_REQUIRED</prop> 
+		<prop key="*">PROPAGATION_REQUIRED</prop> </props> </property> </bean> -->
+
+	<!-- 开启aop监听 -->
+	<!-- <aop:aspectj-autoproxy expose-proxy="true" /> -->
+	<!-- 配置事务增强处理Bean，指定事务管理器 -->
+	<!-- <tx:advice id="txAdvice" transaction-manager="hibernateTransactionManager"> 
+		<tx:attributes> <tx:method name="get*" propagation="REQUIRED" /> <tx:method 
+		name="save*" propagation="REQUIRED" /> <tx:method name="*" propagation="REQUIRED" 
+		/> </tx:attributes> </tx:advice> -->
+
+	<!-- <aop:config> <aop:pointcut expression="execution( * cn.edu.scau.impl.*.*(..))" 
+		id="userPointCut" /> <aop:advisor advice-ref="txAdvice" pointcut-ref="userPointCut" 
+		/> </aop:config> -->
+
+	<!-- <bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" 
+		/> </beans> -->
+	<!-- 注解式事务配置 -->
+	<tx:annotation-driven transaction-manager="hibernateTransactionManager" />
+
+
+
+</beans>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-26 16:21:21 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.edu.scau.vo.Salereturn" table="SALERETURN">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+        <property name="salereturnno" type="java.lang.String">
+            <column name="SALERETURNNO" />
+        </property>
+        <property name="returntime" type="java.sql.Timestamp">
+            <column name="RETURNTIME" />
+        </property>
+        <property name="returnpeople_name" type="java.lang.String">
+            <column name="RETURNPEOPLE_NAME" />
+        </property>
+        <property name="order_no" type="java.lang.String">
+            <column name="ORDER_NO" />
+        </property>
+        <property name="returnreason" type="java.lang.String">
+            <column name="RETURNREASON" />
+        </property>
+    </class>
+</hibernate-mapping>
