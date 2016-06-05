@@ -31,10 +31,10 @@
     <div id="foot" data-options="region:'south'" style="height:30px;text-align: center;background: pink">CopyRight:Allright-git.WXJ</div>
     <div id="nav" data-options="region:'east',split:true" style="width:200px" title="导航">
             <div id="navMenu" class="easyui-accordion" data-options="fit:true,border:false">
-                <div title="系统管理" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+                <div title="系统管理" data-options="iconCls:'icon-tip'" style="overflow:auto;padding:10px;">
                 <ul id="tree1" class="easyui-tree" data-options="lines:true"></ul>
                 </div>
-                <div title="基础数据" data-options="iconCls:'icon-reload',selected:true" style="padding:10px;">
+                <div title="基础数据" data-options="iconCls:'icon-save',selected:true" style="padding:10px;">
                 <ul id="tree" class="easyui-tree" data-options="lines:true"></ul>    
                 </div>    
             </div>

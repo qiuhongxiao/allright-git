@@ -25,6 +25,7 @@ import cn.edu.scau.model.Producttypemodel;
 import cn.edu.scau.service.CustomerService;
 import cn.edu.scau.service.ProductService;
 import cn.edu.scau.service.ProducttypeService;
+import cn.edu.scau.util.AuthPassport;
 import cn.edu.scau.util.ResultMessage;
 import cn.edu.scau.vo.Customer;
 import cn.edu.scau.vo.Product;
@@ -45,7 +46,8 @@ public class ProductController  {
     private ProducttypeService producttypeService;
     
     private int producttype_id;
-      
+    
+  //  @AuthPassport 
     @RequestMapping(value = "productgrid")
     public @ResponseBody Map<String, Object> grid(String productnamesearch,int page,int rows,String sort,String order){
         int total = productService.getTotal(productnamesearch);
@@ -60,7 +62,7 @@ public class ProductController  {
     }
    
 	
-    
+    @AuthPassport
     @RequestMapping(value = "productadd")
     public @ResponseBody ResultMessage add(Product product,int producttype_id ){
             ResultMessage result = new ResultMessage();
@@ -79,10 +81,7 @@ public class ProductController  {
     }
     
     
-    /**
-     * 
-     * 编辑必须更改产品类型，否则报错，有待解决。。。
-     */
+    @AuthPassport
      @RequestMapping(value = "productedit")
     public @ResponseBody ResultMessage edit(Product product,int producttype_id) {
     	ResultMessage result = new ResultMessage();
@@ -111,7 +110,7 @@ public class ProductController  {
     }
    
      
-     
+    @AuthPassport
      @RequestMapping(value = "productremove")
     public @ResponseBody ResultMessage remove(Product product) {
     	ResultMessage result = new ResultMessage();

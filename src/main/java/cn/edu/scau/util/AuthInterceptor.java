@@ -27,8 +27,18 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             	else//如果验证失败
             	{
             		//返回到登录界面
-            		response.sendRedirect("http://www.jb51.net");
-            		return false;
+            		
+//            		return false;
+            		 if (request.getHeader("x-requested-with") != null
+                             && request.getHeader("x-requested-with")
+                                     .equalsIgnoreCase("XMLHttpRequest"))//如果是ajax请求响应头会有，x-requested-with；
+                     {
+                         response.setHeader("sessionstatus", "timeout");//在响应头设置session状态
+                         return false;
+                     }else {
+                    	 response.sendRedirect("/allright-git/views/error.jsp");
+                    	 return false;
+                     }
             	}   	
             }
         }

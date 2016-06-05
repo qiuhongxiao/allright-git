@@ -18,6 +18,7 @@ import javax.annotation.Resource;
 import cn.edu.scau.model.Productmodel;
 import cn.edu.scau.model.Producttypemodel;
 import cn.edu.scau.service.ProducttypeService;
+import cn.edu.scau.util.AuthPassport;
 import cn.edu.scau.util.ResultMessage;
 import cn.edu.scau.vo.Producttype;
 
@@ -33,7 +34,8 @@ public class ProducttypeController {
     private ProducttypeService producttypeService;
     /**
      * 得到数据列表
-     */   
+     */ 
+	@AuthPassport
     @RequestMapping(value = "producttypegrid")
     public @ResponseBody Map<String, Object> grid(int page,int rows,String sort,String order,String producttypenamesearch){
         int total = producttypeService.getTotal(producttypenamesearch);

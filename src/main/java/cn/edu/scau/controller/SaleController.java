@@ -24,6 +24,7 @@ import cn.edu.scau.service.SaleService;
 import cn.edu.scau.service.SerialnumberService;
 import cn.edu.scau.service.UserService;
 import cn.edu.scau.service.Impl.SaleServiceImpl;
+import cn.edu.scau.util.AuthPassport;
 import cn.edu.scau.util.ResultMessage;
 import cn.edu.scau.util.createNoUtils;
 import cn.edu.scau.vo.Bill;
@@ -103,7 +104,7 @@ public class SaleController {
 		return map;
 	}
 	
-	
+	@AuthPassport
 	@RequestMapping(value = "saleitemadd")
 	public ModelAndView saleitemadd(String productno,String discount) {
 		
@@ -126,6 +127,7 @@ public class SaleController {
 	/**
 	 * 删除操作
 	 */
+	@AuthPassport
 	@RequestMapping(value = "saleitemremove")
 	public ModelAndView remove(int id) {
 		
@@ -144,7 +146,7 @@ public class SaleController {
 	
 	
 
-	
+	@AuthPassport
 	@RequestMapping(value = "saleconfrim")
 	public String saleconfirm(String customerno,int paystate,HttpSession httpSession) {
 		
@@ -192,7 +194,7 @@ public class SaleController {
 		return "sale";
 	}	
 
-	
+	@AuthPassport
 	@RequestMapping(value = "hangcredit")
 	public @ResponseBody ResultMessage hangcredit(String customerno,String customername,String telephone,String address,HttpSession httpSession) {	
 		

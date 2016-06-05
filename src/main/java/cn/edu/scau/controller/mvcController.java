@@ -26,7 +26,7 @@ public class mvcController {
         System.out.println(productnamesearch);
     }
     
-   // @AuthPassport
+    @AuthPassport
     @RequestMapping("/sale")
     public String sale(){        
         return "salesitem";
