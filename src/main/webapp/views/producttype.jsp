@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Post</title>
+        <title>产品类别</title>
         <jsp:include page="insertrely.jsp"></jsp:include>
          <script type="text/javascript" charset="utf-8">
          /* jquery入口*/
@@ -139,6 +139,7 @@
                      return $(this).form('validate'); //前台字段格式校验
                  },
                  success: function(result){
+                	 try{
                 	 console.dir(result);
                      var result = eval('('+result+')');
                      if (result.success){
@@ -155,6 +156,10 @@
                              msg: result.msg
                          });
                      }
+                	 }catch(e){
+                		 window.location.replace("error.jsp");
+                	 }
+                     
                  }
              });
          }
@@ -166,6 +171,7 @@
                      return $(this).form('validate'); //前台字段格式校验
                  },
                  success: function(result){
+                	 try{
                      var result = eval('('+result+')');
                      if (result.success){
                          closeDialog();// 调用closeDialog;    
@@ -180,6 +186,11 @@
                              msg: result.msg
                          });
                      }
+                	 }catch(e){
+                		 window.location.replace("error.jsp");
+                	 }
+                     
+                     
                  }
              });
          }

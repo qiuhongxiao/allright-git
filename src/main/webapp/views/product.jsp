@@ -8,7 +8,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>product</title>
+        <title>产品</title>
         <jsp:include page="insertrely.jsp"></jsp:include>
          <script type="text/javascript" charset="utf-8">
          /* jquery入口*/
@@ -161,9 +161,6 @@
                 	 }catch(e){
                 		 window.location.replace("error.jsp");
                 	 }
-                 },
-                 error:function(result){
-                	 window.location.replace("error.jsp");
                  }
              }); 
              
@@ -203,7 +200,7 @@
                      return $(this).form('validate'); //前台字段格式校验
                  },
                  success: function(result){
-                	/// try{
+                	 try{
                 	 console.dir(result);
                      var result = eval('('+result+')');
                      if (result.success){
@@ -219,7 +216,13 @@
                              msg: result.msg
                          });
                      }
+                	 }catch(e){
+                		 window.location.replace("error.jsp");
+                	 }
                  }
+                	
+                	
+                	
              });
          }
          /* 删除数据*/

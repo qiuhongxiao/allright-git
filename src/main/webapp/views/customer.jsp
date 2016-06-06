@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.Map" import="com.opensymphony.xwork2.ActionContext"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%-- <%
     String contextPath = request.getContextPath();
     request.setCharacterEncoding("UTF-8");
@@ -15,12 +14,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>easyui学习笔记</title>
-        <link id="easyuiTheme" rel="stylesheet" type="text/css" href="easyui-1.4.2/themes/default/easyui.css"/>
-        <link rel="stylesheet" type="text/css" href="easyui-1.4.2/themes/icon.css"/>
-        <script type="text/javascript" src="easyui-1.4.2/jquery.min.js"></script>
-        <script type="text/javascript" src="easyui-1.4.2/jquery.easyui.min.js"></script>
-        <script type="text/javascript" src="easyui-1.4.2/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
+        <title>客户</title>
+         <jsp:include page="insertrely.jsp"></jsp:include>
          <script type="text/javascript" charset="utf-8">
          /* jquery入口*/
          $(function() {
