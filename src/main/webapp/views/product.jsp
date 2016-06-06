@@ -203,6 +203,8 @@
                      return $(this).form('validate'); //前台字段格式校验
                  },
                  success: function(result){
+                	/// try{
+                	 console.dir(result);
                      var result = eval('('+result+')');
                      if (result.success){
                          closeDialog();// 调用closeDialog;    

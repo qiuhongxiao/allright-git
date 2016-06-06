@@ -38,5 +38,11 @@
         <property name="sale" type="java.lang.String">
             <column name="SALE" />
         </property>
+        <property name="grid" type="java.lang.String">
+            <column name="GRID" />
+        </property>
+        <property name="edit" type="java.lang.String">
+            <column name="EDIT" />
+        </property>
     </class>
 </hibernate-mapping>

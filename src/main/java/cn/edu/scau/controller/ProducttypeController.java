@@ -49,7 +49,7 @@ public class ProducttypeController {
     
 	
     
-    
+	@AuthPassport
     @RequestMapping(value = "producttypeadd")
     public @ResponseBody ResultMessage add(Producttype producttype){
             ResultMessage result = new ResultMessage();
@@ -64,7 +64,7 @@ public class ProducttypeController {
     }
    
     
-    
+	@AuthPassport
     @RequestMapping(value = "producttypeedit")
     public @ResponseBody ResultMessage edit(Producttype producttype) {
     	ResultMessage result = new ResultMessage();
@@ -85,7 +85,7 @@ public class ProducttypeController {
             }
             return result;
     }
-     
+	@AuthPassport
     @RequestMapping(value = "producttyperemove")
     public @ResponseBody ResultMessage remove(Producttype producttype) {
     	ResultMessage result = new ResultMessage();

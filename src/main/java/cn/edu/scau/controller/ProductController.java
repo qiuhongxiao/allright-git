@@ -47,7 +47,7 @@ public class ProductController  {
     
     private int producttype_id;
     
-  //  @AuthPassport 
+    @AuthPassport 
     @RequestMapping(value = "productgrid")
     public @ResponseBody Map<String, Object> grid(String productnamesearch,int page,int rows,String sort,String order){
         int total = productService.getTotal(productnamesearch);
@@ -81,7 +81,7 @@ public class ProductController  {
     }
     
     
-   // @AuthPassport
+     @AuthPassport
      @RequestMapping(value = "productedit")
     public @ResponseBody ResultMessage edit(Product product,int producttype_id) {
     	ResultMessage result = new ResultMessage();

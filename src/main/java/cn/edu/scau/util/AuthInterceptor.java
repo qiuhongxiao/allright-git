@@ -55,9 +55,20 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             	switch (methodurl) {
 				case "prdoductgrid":
 				case "producttypegrid":
-						if("是".equals(userrole.getGrid()))return true;
-						else if("否".equals(userrole.getGrid()))return decide(request, response);
-					
+						if("是".equals(userrole.getGrid()))
+							return true;
+						else if("否".equals(userrole.getGrid()))
+							return decide(request, response);
+				case "productadd":
+				case "productedit":
+				case "productremove":
+				case "producttypeadd":
+				case "producttypeedit":
+				case "producttyperemove":
+					if("是".equals(userrole.getEdit()))
+						return true;
+					else if("否".equals(userrole.getEdit()))
+						return decide(request, response);
 
 				default:
 					return true;
