@@ -81,7 +81,7 @@ public class ProductController  {
     }
     
     
-    @AuthPassport
+   // @AuthPassport
      @RequestMapping(value = "productedit")
     public @ResponseBody ResultMessage edit(Product product,int producttype_id) {
     	ResultMessage result = new ResultMessage();

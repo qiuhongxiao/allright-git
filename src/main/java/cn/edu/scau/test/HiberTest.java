@@ -108,4 +108,28 @@ public class HiberTest {
 		int a=1;
 		System.out.println(String.format("%02d", a));
 	}
+	
+	
+	//@Test
+	public String testswitch(){
+		String url="add";
+		String judge="是";
+		switch (url) {
+		case "add": 
+			if("是".equals(judge))
+			return "add";
+			
+		
+		default:
+			System.out.println("===");
+			return "=====";
+		}
+	}
+	
+	@Test
+	public void print(){
+		System.out.println(testswitch());
+	}
+	
+	 
 }

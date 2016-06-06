@@ -1,14 +1,5 @@
 package cn.edu.scau.vo;
 
-import javax.persistence.Entity;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-
-@Entity
-@Table(name="user")
 public class User implements java.io.Serializable{
 	
 	private int id;
@@ -27,9 +18,6 @@ public class User implements java.io.Serializable{
 		this.userrole_rolename = userrole_rolename;
 	}
     
-	@Id
-	@Column(name="id",nullable=false,unique=true,length=11)
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getId() {
 		return id;
 	}
@@ -37,7 +25,6 @@ public class User implements java.io.Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-    @Column(name="username",unique=true,nullable=false,length=36)
 	public String getUsername() {
 		return username;
 	}
@@ -45,7 +32,6 @@ public class User implements java.io.Serializable{
 	public void setUsername(String username) {
 		this.username = username;
 	}
-    @Column(name="password",nullable=false,length=100)
 	public String getPassword() {
 		return password;
 	}
@@ -54,7 +40,6 @@ public class User implements java.io.Serializable{
 		this.password = password;
 	}
 
-	@Column(name="userrole_rolename",nullable=false,unique=false,length=36)
 	public String getUserrole_rolename() {
 		return userrole_rolename;
 	}

@@ -2,15 +2,6 @@ package cn.edu.scau.vo;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-
-import javax.persistence.Entity;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-@Entity
-@Table(name="saleorder")
 public class Saleorder implements Serializable {
    
 	private int id;
@@ -25,9 +16,6 @@ public class Saleorder implements Serializable {
 	
 	private String seller_name;
 
-	@Id
-	@Column(name="id",nullable=false,unique=true,length=11)
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getId() {
 		return id;
 	}
@@ -36,7 +24,6 @@ public class Saleorder implements Serializable {
 		this.id = id;
 	}
 
-	@Column(name="orderno",nullable=false,unique=true,length=36)
 	public String getOrderno() {
 		return orderno;
 	}
@@ -45,7 +32,6 @@ public class Saleorder implements Serializable {
 		this.orderno = orderno;
 	}
 
-	@Column(name="customer_no",nullable=false,unique=true,length=36)
 	public String getCustomer_no() {
 		return customer_no;
 	}
@@ -53,7 +39,6 @@ public class Saleorder implements Serializable {
 	public void setCustomer_no(String customer_no) {
 		this.customer_no = customer_no;
 	}
-	@Column(name="state",nullable=false,unique=false,length=11)
 	public int getState() {
 		return state;
 	}
@@ -61,7 +46,6 @@ public class Saleorder implements Serializable {
 	public void setState(int state) {
 		this.state = state;
 	}
-	@Column(name="ordertime",nullable=false,unique=false)
 	public Timestamp getOrdertime() {
 		return ordertime;
 	}
@@ -69,7 +53,6 @@ public class Saleorder implements Serializable {
 	public void setOrdertime(Timestamp ordertime) {
 		this.ordertime = ordertime;
 	}
-	@Column(name="seller_name",nullable=false,unique=false,length=36)
 	public String getSeller_name() {
 		return seller_name;
 	}

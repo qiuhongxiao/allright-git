@@ -3,62 +3,48 @@ package cn.edu.scau.vo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
-
-/**
- * 创建时间：2015年5月26日 下午9:32:25
- * 项目名称：Post
- * @author pnz
- * @version 1.0
- * 类说明：
- */
-
-@Entity
-@Table(name="userrole")
 public class Userrole implements Serializable {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)	
-	@Column(name="id",length=11,nullable = false,unique=true)
 	private int id;
 	
-	@Column(name="rolename",nullable=false,unique=true,length=36)
 	private String rolename;
 	
-	@Column(name="rolecreatetime",nullable=false,unique=true)
 	private Timestamp rolecreatetime;
 	
-	@Column(name="rolecreator",nullable=false,unique=false,length=36)
 	private String rolecreator;
 	
-	@Column(name="reportmanage",nullable=false,unique=false,length=2)
+	private String grid;
+	
+	private String edit;
+	
 	private String reportmanage;
 	
-	@Column(name="basedatamanage",nullable=false,unique=false,length=2)
 	private String basedatamanage;
 	
-	@Column(name="salereturn",nullable=false,unique=false,length=2)
 	private String salereturn;
 	
-	@Column(name="hangcredit",nullable=false,unique=false,length=2)
 	private String hangcredit;
 	
-	@Column(name="hangpay",nullable=false,unique=false,length=2)
 	private String hangpay;
 	
-	@Column(name="permissionmanage",nullable=false,unique=false,length=2)
 	private String permissionmanage;
 	
-	@Column(name="sale",nullable=false,unique=false,length=2)
 	private String sale;
 	
 	
+	
+	
+	public String getGrid() {
+		return grid;
+	}
+	public void setGrid(String grid) {
+		this.grid = grid;
+	}
+	public String getEdit() {
+		return edit;
+	}
+	public void setEdit(String edit) {
+		this.edit = edit;
+	}
 	public String getRolename() {
 		return rolename;
 	}

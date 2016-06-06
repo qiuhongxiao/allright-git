@@ -136,12 +136,14 @@
          }
          /* 保存数据*/
          function save(){
-           /*   $('#form').form('submit',{
+             $('#form').form('submit',{
                  url: "http://localhost:8080/allright-git/productadd",  //提交地址
                  onSubmit: function(){
                      return $(this).form('validate'); //前台字段格式校验
                  },
                  success: function(result){
+                	 try{
+                	 console.dir(result);
                      var result = eval('('+result+')');
                      if (result.success){
                          closeDialog();// 调用closeDialog;    
@@ -156,11 +158,17 @@
                              msg: result.msg
                          });
                      }
+                	 }catch(e){
+                		 window.location.replace("error.jsp");
+                	 }
+                 },
+                 error:function(result){
+                	 window.location.replace("error.jsp");
                  }
-             }); */
+             }); 
              
              
-              var productno=$("#productno").val();var productname=$("#productname").val();
+             /*  var productno=$("#productno").val();var productname=$("#productname").val();
              var description=$("#description").val();var price=$("#price").val();
              var producttype_id=$("#cc").val();var stockquantity=$("#stockquantity").val();
              
@@ -185,7 +193,7 @@
                         });
                     }
                 }
-     		}); 
+     		});  */
          }
          /*提交修改的数据*/
          function change(editid){
