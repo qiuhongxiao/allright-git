@@ -67,7 +67,7 @@
                      "id":41,
                      "text":"你的账户权限",
                      "attributes":{
-                     "url":"/allright-git/views/userabout.action"
+                     "url":"http://localhost:8080/allright-git/userabout"
                      }
               }]
        }

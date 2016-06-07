@@ -11,11 +11,11 @@
               }]
        },{
                "id":4,
-              "text":"角色管理",
+              "text":"权限管理",
               "state":"closed",
               "children":[{
                      "id":41,
-                     "text":"角色管理",
+                     "text":"权限管理",
                      "attributes":{
                      "url":"/allright-git/views/userrolemanage.jsp"
                      }

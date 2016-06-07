@@ -75,9 +75,6 @@ public class SalereturnController {
 	 * @return
 	 */
 	@RequestMapping(value = "salereturnmoney")
-//	, results = {
-//			@Result(name = "salereturnmoney", location = "/salereturn.jsp"),@Result(name="error",location="/salereturn.jsp")},
-//			interceptorRefs = { @InterceptorRef(value = "myinterceptor") })
 	public String Salereturnmoney(String order_no,String product_no,int returnquantity,HttpSession httpSession){
 		double money = 0;
 		if(order_no!=null&&order_no!=""&&product_no!=null&&product_no!=""&&returnquantity!=0){
@@ -106,9 +103,6 @@ public class SalereturnController {
 	}
 	
 	@RequestMapping(value="salereturnconfirm")
-//	 ,results={@Result(name="salereturnconfirm",location="/salereturn.jsp"),
-//			@Result(name="error",location="/salereturn.jsp")},
-//			interceptorRefs = { @InterceptorRef(value = "myinterceptor") })
 	public String salereturnconfirm(String order_no,String product_no,int returnquantity,HttpSession httpSession){
 		if(order_no!=null&&order_no!=""&&product_no!=null&&product_no!=""&&returnquantity!=0){
 			try{
@@ -132,12 +126,6 @@ public class SalereturnController {
 				return "error";
 			}					
 		}
-//		Map session = (Map) ActionContext.getContext().getSession();		
-//		session.put("order_no", "");
-//		session.put("product_no", "");
-//		session.put("returnquantity", 0);
-//		session.put("canreturnquantity", 0);
-//		session.put("salereturnmoney1", "0");
 		httpSession.setAttribute("orderno", "");
 		httpSession.setAttribute("productno", "");
 		httpSession.setAttribute("returnquantity", "0");

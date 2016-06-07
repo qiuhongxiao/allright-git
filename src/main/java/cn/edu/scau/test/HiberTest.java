@@ -131,5 +131,9 @@ public class HiberTest {
 		System.out.println(testswitch());
 	}
 	
-	 
+	 @Test
+	 public void printid(){
+		 String id="1111";
+		 System.out.println("{identity:\""+id+"\",status:\"0\"}");
+	 }
 }

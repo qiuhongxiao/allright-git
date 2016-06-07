@@ -29,7 +29,7 @@
                  //document.getElementById("form2").submit();
                  $('#grid').datagrid({
                  title : '客户',
-                 url : "customergrid.action?customernamesearch="+x,
+                 url : "http://localhost:8080/allright-git/customergrid?customernamesearch="+x,
                  loadMsg : '正在加载…',  //当从远程站点载入数据时，显示的一条快捷信息。
                  fit : true,  //窗口自适应
                  rownumbers:"true",
@@ -121,7 +121,7 @@
          function add() {
              openDialog('添加客户'); // 显示添加数据dialog窗口
              $("#form").form('clear'); // 清空form的数据
-             url = 'customeradd.action'; //后台添加数据action
+             url = 'http://localhost:8080/allright-git/customeradd'; //后台添加数据action
          }
          /* 修改数据*/
          function edit() {
@@ -139,12 +139,14 @@
          /* 保存数据*/
          function save(){
              $('#form').form('submit',{
-                 url: "customeradd.action",  //提交地址
+                 url: "http://localhost:8080/allright-git/customeradd",  //提交地址
                  onSubmit: function(){
                      return $(this).form('validate'); //前台字段格式校验
                  },
                  success: function(result){
-                     var result = eval('('+result+')');
+                     
+                	 try{
+                	 var result = eval('('+result+')');
                      if (result.success){
                          closeDialog();// 调用closeDialog;    
                          reload();// 重新加载
@@ -158,18 +160,27 @@
                              msg: result.msg
                          });
                      }
+                	 }catch(e){
+                		 window.location.replace("error.jsp");
+                	 }
+                     
+                     
+                     
                  }
+                 
              });
          }
          /*提交修改的数据*/
          function change(editid){
              $('#form').form('submit',{
-                 url: "customeredit.action?id="+editid,  //提交地址
+                 url: "http://localhost:8080/allright-git/customeredit?id="+editid,  //提交地址
                  onSubmit: function(){
                      return $(this).form('validate'); //前台字段格式校验
                  },
                  success: function(result){
-                     var result = eval('('+result+')');
+                     
+                	 try{
+                	 var result = eval('('+result+')');
                      if (result.success){
                          closeDialog();// 调用closeDialog;    
                          reload();// 重新加载
@@ -183,6 +194,12 @@
                              msg: result.msg
                          });
                      }
+                	 }catch(e){  
+                		 window.location.replace("error.jsp");
+                	 }
+                     
+                     
+                     
                  }
              });
          }
@@ -197,7 +214,7 @@
              $.messager.confirm('确认', '确定要删除吗？', function (r) {
                      if (r) {
                          //提交到后台的action
-                         $.post('customerremove.action', { id: row.id }, function (result) { 
+                         $.post('http://localhost:8080/allright-git/customerremove', { id: row.id }, function (result) { 
                              if (result.success) {
                                  reload();
                                  $.messager.show({   //显示正确信息

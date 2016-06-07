@@ -1,17 +1,22 @@
 package cn.edu.scau.controller;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.edu.scau.service.UserService;
 import cn.edu.scau.service.UserroleService;
+import cn.edu.scau.util.ResultMessage;
+import cn.edu.scau.vo.User;
 import cn.edu.scau.vo.Userrole;
 
 @Controller
@@ -20,34 +25,30 @@ public class UserroleController  {
 	private static final long serialVersionUID = 1L;
 	@Resource(name="userroleService")
     private UserroleService userroleService;
-    //采用modeldriven从页面获取数据应该要new userrole（）一下
-    private Userrole userrole = new Userrole();
-    private String rolenamesearch;
+	
+	@Resource(name="userService")
+    private UserService userService;
     /**
      * 得到数据列表
      */   
-   /* @Action(value = "userrolegrid", results = { @Result(name = "userrolegrid", location = "/userrolemanage.jsp"),
-			@Result(name = "error", location = "/error.jsp") },
-	interceptorRefs = { @InterceptorRef(value = "myinterceptor") })
-    public void grid(){
-        int total = userroleService.getTotal(this.getRolenamesearch());
+    @RequestMapping(value = "userrolegrid")
+    public @ResponseBody Map<String, Object> grid(int page,int rows,String sort,String order,String rolenamesearch){
+        int total = userroleService.getTotal(rolenamesearch);
         //page为页数，rows为每页记录数
-        List<Userrole> list = userroleService.findAllUserrole(page, rows, sort, order,this.getRolenamesearch()); 
-        writeJson(total,list);
+        List<Userrole> list = userroleService.findAllUserrole(page, rows, sort, order,rolenamesearch); 
+        Map<String, Object> map=new HashMap<>();
+        map.put("total", total);
+        map.put("rows",list);
+        return map;
     }
     
-	*//**
-     * 添加操作
-     *//*  
-    @Action(value = "userroleadd", results = { @Result(name = "userroleadd", location = "/userrolemanage.jsp"),
-			@Result(name = "error", location = "/error.jsp") },
-			interceptorRefs = { @InterceptorRef(value = "myinterceptor") })
-    public void add(){
+	 
+     @RequestMapping(value = "userroleadd")
+    public @ResponseBody ResultMessage add(HttpSession httpSession,Userrole userrole){
             ResultMessage result = new ResultMessage();
             try {            	
-            	Map<String, Object> session = (Map<String, Object>) ActionContext
-						.getContext().getSession();
-				User user = (User) session.get("user");
+            	String username=(String) httpSession.getAttribute("username");
+            	User user=userService.getUser(username);
 				String rolecreator = null;
 				if (user != null) {
 					rolecreator = user.getUsername();
@@ -59,26 +60,24 @@ public class UserroleController  {
 				Timestamp rolecreatetime = new Timestamp(date.getTime());
 				userrole.setRolecreator(rolecreator);
 				userrole.setRolecreatetime(rolecreatetime);
-//				System.out.println(""+userrole.getBasedatamanage());
             	userroleService.saveUserrole(userrole);
                 result.setSuccess(true);
                 result.setMsg("添加角色成功");                
             } catch (Exception e) {
                 result.setMsg("添加角色失败");                
             }
-            writeJson(result);
+           return result;
     }
-    *//**
-     * 修改操作
-     *//*   
-    @Action(value = "userroleedit", results = { @Result(name = "userroleedit", location = "/userrolemanage.jsp.jsp"),
-			@Result(name = "error", location = "/error.jsp") })
-    public void edit() {
+     
+     
+     
+   
+     @RequestMapping(value = "userroleedit")
+    public @ResponseBody ResultMessage edit(HttpSession httpSession,Userrole userrole) {
     	ResultMessage result = new ResultMessage();
             try {
-            	Map<String, Object> session = (Map<String, Object>) ActionContext
-						.getContext().getSession();
-				User user = (User) session.get("user");
+            	String username=(String) httpSession.getAttribute("username");
+            	User user=userService.getUser(username);
 				String rolecreator = null;
 				if (user != null) {
 					rolecreator = user.getUsername();
@@ -103,14 +102,14 @@ public class UserroleController  {
             	result.setSuccess(false);
                 result.setMsg("修改角色失败");
             }
-            writeJson(result);
+            return result;
     }
-    *//**
-     * 删除操作
-     *//*   
-    @Action(value = "userroleremove", results = { @Result(name = "userroleremove", location = "/userrolemanage.jsp.jsp"),
-			@Result(name = "error", location = "/error.jsp") })
-    public void remove() {
+
+     
+     
+     
+     @RequestMapping(value = "userroleremove")
+    public @ResponseBody ResultMessage remove(Userrole userrole) {
     	ResultMessage result = new ResultMessage();
             try {
                 boolean flag = userroleService.delUserrole(userrole.getId());
@@ -125,22 +124,9 @@ public class UserroleController  {
             	result.setSuccess(false);
                 result.setMsg("删除角色失败");
             }
-            writeJson(result);
+            return result;
     }  
 	
-	
-	public String getRolenamesearch() {
-		return rolenamesearch;
-	}
-
-	public void setRolenamesearch(String rolenamesearch) {
-		this.rolenamesearch = rolenamesearch;
-	}
-
-	@Override
-	public Userrole getModel() {
-		// TODO Auto-generated method stub
-		return userrole;
-	}*/
+    
 
 }

@@ -9,12 +9,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>easyui学习笔记</title>
-        <link id="easyuiTheme" rel="stylesheet" type="text/css" href="easyui-1.4.2/themes/default/easyui.css"/>
-        <link rel="stylesheet" type="text/css" href="easyui-1.4.2/themes/icon.css"/>
-        <script type="text/javascript" src="easyui-1.4.2/jquery.min.js"></script>
-        <script type="text/javascript" src="easyui-1.4.2/jquery.easyui.min.js"></script>
-        <script type="text/javascript" src="easyui-1.4.2/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
+        <title>权限管理</title>
+        <jsp:include page="insertrely.jsp"></jsp:include>
          <script type="text/javascript" charset="utf-8">
          /* jquery入口*/
          $(function() {
@@ -30,7 +26,7 @@
                  
                  $('#grid').datagrid({
                  title : '产品',
-                 url : "userrolegrid.action?rolenamesearch="+x,
+                 url : "http://localhost:8080/allright-git/userrolegrid?rolenamesearch="+x,
                  loadMsg : '正在加载…',  //当从远程站点载入数据时，显示的一条快捷信息。
                  fit : true,  //窗口自适应
                  nowrap: false, //设置为true，当数据长度超出列宽时将会自动截取
@@ -126,7 +122,7 @@
          function add() {
              openDialog('添加权限集合(角色)'); // 显示添加数据dialog窗口
              $("#form").form('clear'); // 清空form的数据
-             url = 'userroleadd.action'; //后台添加数据action
+             url = 'http://localhost:8080/allright-git/userroleadd'; //后台添加数据action
          }
          /* 修改数据*/
          function edit() {
@@ -144,7 +140,7 @@
          /* 保存数据*/
          function save(){
              $('#form').form('submit',{
-                 url: "userroleadd.action",  //提交地址
+                 url: "http://localhost:8080/allright-git/userroleadd",  //提交地址
                  onSubmit: function(){
                      return $(this).form('validate'); //前台字段格式校验
                  },
@@ -169,7 +165,7 @@
          /*提交修改的数据*/
          function change(editid){
              $('#form').form('submit',{
-                 url: "userroleedit.action?id="+editid,  //提交地址
+                 url: "http://localhost:8080/allright-git/userroleedit?id="+editid,  //提交地址
                  onSubmit: function(){
                      return $(this).form('validate'); //前台字段格式校验
                  },
@@ -202,7 +198,7 @@
              $.messager.confirm('确认', '确定要删除吗？', function (r) {
                      if (r) {
                          //提交到后台的action
-                         $.post('userroleremove.action', { id: row.id }, function (result) { 
+                         $.post('http://localhost:8080/allright-git/userroleremove', { id: row.id }, function (result) { 
                              if (result.success) {
                                  reload();
                                  $.messager.show({   //显示正确信息

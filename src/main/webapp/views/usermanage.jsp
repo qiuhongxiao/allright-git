@@ -8,12 +8,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>easyui学习笔记</title>
-        <link id="easyuiTheme" rel="stylesheet" type="text/css" href="easyui-1.4.2/themes/default/easyui.css"/>
-        <link rel="stylesheet" type="text/css" href="easyui-1.4.2/themes/icon.css"/>
-        <script type="text/javascript" src="easyui-1.4.2/jquery.min.js"></script>
-        <script type="text/javascript" src="easyui-1.4.2/jquery.easyui.min.js"></script>
-        <script type="text/javascript" src="easyui-1.4.2/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
+        <title>用户管理</title>
+        <jsp:include page="insertrely.jsp"></jsp:include>
          <script type="text/javascript" charset="utf-8">
          /* jquery入口*/
          $(function() {
@@ -21,15 +17,11 @@
          });
          /* 加载datagrid列表*/
              function loadgrid(){
-            	 
 
             	 var x = document.getElementById("usernamesearch").value;
-             	
-                  //document.getElementById("form2").submit();
-                 
                  $('#grid').datagrid({
                  title : '产品',
-                 url : "usergrid.action?usernamesearch="+x,
+                 url : "http://localhost:8080/allright-git/usergrid?usernamesearch="+x,
                  loadMsg : '正在加载…',  //当从远程站点载入数据时，显示的一条快捷信息。
                  fit : true,  //窗口自适应
                  nowrap: false, //设置为true，当数据长度超出列宽时将会自动截取
@@ -118,7 +110,7 @@
          function add() {
              openDialog('添加用户'); // 显示添加数据dialog窗口
              $("#form").form('clear'); // 清空form的数据
-             url = 'useradd.action'; //后台添加数据action
+             url = 'http://localhost:8080/allright-git/useradd'; //后台添加数据action
          }
          /* 修改数据*/
          function edit() {
@@ -136,11 +128,12 @@
          /* 保存数据*/
          function save(){
              $('#form').form('submit',{
-                 url: "useradd.action",  //提交地址
+                 url: "http://localhost:8080/allright-git/useradd",  //提交地址
                  onSubmit: function(){
                      return $(this).form('validate'); //前台字段格式校验
                  },
                  success: function(result){
+                	 try{
                      var result = eval('('+result+')');
                      if (result.success){
                          closeDialog();// 调用closeDialog;    
@@ -155,17 +148,23 @@
                              msg: result.msg
                          });
                      }
+                	 }catch(e){
+                		 window.location.replace("error.jsp");
+                	 }
+                     
+                     
                  }
              });
          }
          /*提交修改的数据*/
          function change(editid){
              $('#form').form('submit',{
-                 url: "useredit.action?id="+editid,  //提交地址
+                 url: "http://localhost:8080/allright-git/useredit?id="+editid,  //提交地址
                  onSubmit: function(){
                      return $(this).form('validate'); //前台字段格式校验
                  },
                  success: function(result){
+                	 try{
                      var result = eval('('+result+')');
                      if (result.success){
                          closeDialog();// 调用closeDialog;    
@@ -180,6 +179,11 @@
                              msg: result.msg
                          });
                      }
+                	 }catch(e){
+                		 window.location.replace("error.jsp");
+                	 }
+                     
+                     
                  }
              });
          }
@@ -194,7 +198,7 @@
              $.messager.confirm('确认', '确定要删除吗？', function (r) {
                      if (r) {
                          //提交到后台的action
-                         $.post('userremove.action', { id: row.id }, function (result) { 
+                         $.post('http://localhost:8080/allright-git/userremove', { id: row.id }, function (result) { 
                              if (result.success) {
                                  reload();
                                  $.messager.show({   //显示正确信息
@@ -260,7 +264,7 @@
                     
                  <div>
                         <label>用户角色</label>
-                        <input id="cc" class="easyui-combobox" name="userrole_rolename" data-options="panelHeight:'auto',editable:false,valueField:'rolename',textField:'rolename',url:'user_userrolegrid.action',required:true,missingMessage:'角色为必填项，不能为空'" /> 
+                        <input id="cc" class="easyui-combobox" name="userrole_rolename" data-options="panelHeight:'auto',editable:false,valueField:'rolename',textField:'rolename',url:'http://localhost:8080/allright-git/user_userrolegrid',required:true,missingMessage:'角色为必填项，不能为空'" /> 
                  </div>
                  <br>                                
               </form>

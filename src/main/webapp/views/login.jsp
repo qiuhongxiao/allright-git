@@ -40,6 +40,8 @@ $.ajax( {
 
 </head>
 <body bgcolor=#FFFFFF background="<%=request.getContextPath() %>/views/1.gif">
+<bgsound src="url" loop="-1">
+<EMBED src="url" autostart="true" loop="true" width="80" height="20"  playbutton="true"> 
   <center> 
   <font face="华文彩云" size =9 color =blue>欢迎登陆本系统！</font>  
     <br><p>
