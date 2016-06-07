@@ -145,6 +145,7 @@
                      return $(this).form('validate'); //前台字段格式校验
                  },
                  success: function(result){
+                	 try{
                      var result = eval('('+result+')');
                      if (result.success){
                          closeDialog();// 调用closeDialog;    
@@ -159,6 +160,12 @@
                              msg: result.msg
                          });
                      }
+                	 }catch(e){
+                		 window.location.replace("error.jsp");
+                	 }
+                     
+                     
+                     
                  }
              });
          }
@@ -170,6 +177,7 @@
                      return $(this).form('validate'); //前台字段格式校验
                  },
                  success: function(result){
+                	 try{
                      var result = eval('('+result+')');
                      if (result.success){
                          closeDialog();// 调用closeDialog;    
@@ -184,6 +192,12 @@
                              msg: result.msg
                          });
                      }
+                	 }catch(e){
+                		 window.location.replace("error.jsp");
+                	 }
+                     
+                     
+                     
                  }
              });
          }
