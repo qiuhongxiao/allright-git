@@ -43,14 +43,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             	 String username=(String)request.getSession().getAttribute("username");
                	 User user=userService.getUser(username);
                	 Userrole userrole=userroleService.getRoleFromUserId(user.getUserrole_rolename());
-            	//在这里实现自己的权限验证逻辑
-//            	if(false)//如果验证成功返回true（这里直接写false来模拟验证失败的处理）
-//            		return true;
-//            	else//如果验证失败
-//            	{
-//            		
-//            		return decide(request, response);
-//            	}   
             	
             	switch (methodurl) {
 				case "prdoductgrid":
@@ -69,7 +61,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 						return true;
 					else if("否".equals(userrole.getEdit()))
 						return decide(request, response);
-
+					
 				default:
 					return true;
 				}

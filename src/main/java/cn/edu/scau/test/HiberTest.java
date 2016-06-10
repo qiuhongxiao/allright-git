@@ -136,4 +136,18 @@ public class HiberTest {
 		 String id="1111";
 		 System.out.println("{identity:\""+id+"\",status:\"0\"}");
 	 }
+	 
+	 @Test
+	 public void testeditproduct(){
+		 int producttype_id=1;
+		 Producttype pt = producttypeService.get(producttype_id);
+		 Product product=productService.getProduct("a001");
+		 product.setProductname("acccc");
+     	//Producttype pt=new Producttype();
+     	//pt.setId(producttype_id);
+     	//Producttype ptt=new Producttype(pt.getId(), pt.getProducttypename(), pt.getDescription(), pt.getProducts());
+     	//Producttype pt=new Producttype(1, a, description, products)
+     	product.setProducttype(pt);
+         boolean flag = productService.updateProduct(product);
+	 }
 }

@@ -117,14 +117,14 @@
         	 } 
          /*对选中的记录，把订单编号和产品编号一起传送到服务器端*/
          function calculatereturnmoney(){
-        	 alert("进入 calculatereturnmoney方法");
+        	// alert("进入 calculatereturnmoney方法");
         	// window.setTimeout("go()",1000);
         	 //var row = $('#grid').datagrid[1,1].toString();
              //如果没有选中记录
 //              if(row == null){
                  //$.messager.alert("提示", "请选择一条记录"+row,'info');
-               var a = " ${canreturnquantity} ";
-             if(document.getElementById("returnquantity").value == null||document.getElementById("returnquantity").value ==0){
+               var a =  ${canreturnquantity} ;
+             if(document.getElementById("returnquantity").value == null||document.getElementById("returnquantity").value ==0||document.getElementById("returnquantity").value>a){
             	 $.messager.alert("提示:","数量不能为零，请输入小于可退货数量的数字","info");
                  return false;
               
@@ -147,7 +147,7 @@
              //如果没有选中记录
 //              var a = row.quantity;
         	 
-        	 var a =" ${canreturnquantity} "; 
+        	 var a = ${canreturnquantity} ; 
              if(document.getElementById("returnquantity").value == null||document.getElementById("returnquantity").value ==0){
                  $.messager.alert("提示:","数量不能为零，请输入小于可退货数量的数字","info");
               return false;
@@ -205,7 +205,7 @@
 			
 			<br>&nbsp;&nbsp;<label style="font-size: 20px">退货数量：</label></label><input
  			id="returnquantity" name="returnquantity" type="text" value="${returnquantity }" size=11 onkeyup="if(isNaN(value))execCommand('undo')" 
- 			onafterpaste="this.value=this.value.replace(/\D/g,'')"
+ 			onafterpaste="if(isNaN(value))execCommand('undo')"
  			height=20>&nbsp;&nbsp;<a
 				id="calculatereturnmoney" class="easyui-linkbutton"
 				data-options="iconCls:'icon-ok',plain:true" onclick="calculatereturnmoney()"

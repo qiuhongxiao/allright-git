@@ -2,11 +2,14 @@
 	pageEncoding="UTF-8" %>
 <%
        
-    /*  String totalmoney=request.getParameter("totalmoney");
-    out.println("到底有没有刷新1"+totalmoney);
-    if(totalmoney==null){
-    	totalmoney="0.0";
-    }    */
+	String totalmoneyy=(String)request.getAttribute("totalmoney");
+	//String sessiontestString=session.getAttribute("totalmoney");
+    out.println("到底有没有刷新:"+totalmoneyy);
+  //  out.println("sessiontest=========="+sessiontestString);
+    if(totalmoneyy==null){
+    	totalmoneyy="0.00";
+    } 
+   out.println("判断后："+totalmoneyy);
     /* Map map1 = (Map)ActionContext.getContext().get("request");   
     String successmessage=(String)map1.get("successmessage");
     //out.println("到底有没有刷新1"+totalmoney);
@@ -157,7 +160,7 @@ var successmessage1 = <%=successmessage%>;
              
          }
          function go( ) {//定义函数 
-        	 window.location.href="sale.jsp";//页面跳转 
+        	 window.location.href="/allright-git/views/sale.jsp";//页面跳转 
         	 } 
         	 
          /* 关闭Dialog*/
@@ -212,7 +215,7 @@ var successmessage1 = <%=successmessage%>;
          function retail(){        	 
         	 var pay=document.getElementById("pay").value;
         	 
-        	 var total=${totalmoney};
+        	 var total=<%=totalmoneyy%>;
         	 var change=pay-total;  
         	 var change1=change.toFixed(2);
         	 document.getElementById("change").value=change1;
@@ -225,7 +228,7 @@ var successmessage1 = <%=successmessage%>;
 	
 	<div style="padding: 3px; background-color: #ccddaa; font-size: 20;">
 		<div style="padding: 15px; font-size: 45;">
-			金额总计:&nbsp; ${totalmoney}&nbsp;&nbsp;<label style="font-size: 35;">支付:</label><input
+			金额总计:&nbsp; <%=totalmoneyy %>&nbsp;&nbsp;<label style="font-size: 35;">支付:</label><input
 				id="pay" type="text"
 				style="border: none; background-color: #ccddaa; width: 160px; height: 60px; font-size: 50px" onkeyup="if(isNaN(value))execCommand('undo')">
 			<button onclick="retail()"

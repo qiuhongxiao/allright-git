@@ -75,6 +75,7 @@ public class ProductController  {
                 result.setSuccess(true);
                 result.setMsg("成功添加产品");                
             } catch (Exception e) {
+            	e.printStackTrace();
                 result.setMsg("添加产品失败");                
             }
             return result;
@@ -103,6 +104,7 @@ public class ProductController  {
                 }
                
             } catch (Exception e) {
+            	e.printStackTrace();
             	result.setSuccess(false);
                 result.setMsg("出错了！");
             }
@@ -124,6 +126,7 @@ public class ProductController  {
                 	 result.setMsg("删除产品失败");
                 }
             } catch (Exception e) {
+            	e.printStackTrace();
             	result.setSuccess(false);
                 result.setMsg("出错了！");
             }

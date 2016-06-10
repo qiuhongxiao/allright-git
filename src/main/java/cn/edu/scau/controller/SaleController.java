@@ -56,26 +56,6 @@ public class SaleController {
 	@Resource(name = "userService")
 	private UserService userService;
 
-	private Bill bill = new Bill();
-	private int id;
-	private String customerno;
-	/* 前面传过来的数据，折扣为字符串类型，所以需要做适当的转换 */
-	private String discount;
-	private String productno;
-	private int paystate;
-	//挂账所需下面三个变量支持
-	private String customername;
-	private String telephone;
-	private String address;
-	//挂账订单的查询
-	private String hangcustomername;
-	private String hangtelephone;
-
-	// @Override
-	// public Bill getModel() {
-	// // TODO Auto-generated method stub
-	// return bill;
-	// }
 	/**
 	 * 得到开单的商品列表
 	 */
@@ -90,7 +70,7 @@ public class SaleController {
 			
 			map.put("rows", list);
 			map.put("total", total);
-			httpSession.setAttribute("totalmoney", str);
+		//	httpSession.setAttribute("totalmoney", str);
 			//map.put("totalmoney", str);
 			
 			
@@ -138,7 +118,6 @@ public class SaleController {
 				map.put("totalmoney", updateTotalMoney());
 				ModelAndView mv=new ModelAndView("sale", map);
 				return mv;
-				//updateTotalMoney();
 			
 
 	}
@@ -148,7 +127,7 @@ public class SaleController {
 
 	@AuthPassport
 	@RequestMapping(value = "saleconfrim")
-	public String saleconfirm(String customerno,int paystate,HttpSession httpSession) {
+	public ModelAndView saleconfirm(String customerno,int paystate,HttpSession httpSession) {
 		
 		 
 		try {
@@ -159,10 +138,6 @@ public class SaleController {
 				String customer_no = saleService.getCustomerno(customerno,null,null,null);
 				
 				 
-//				Map<String, Object> session = (Map<String, Object>) ActionContext
-//						.getContext().getSession();
-				
-				//User user = (User) session.get("user");
 				String username=(String)httpSession.getAttribute("username");
 				User user=userService.getUser(username);
 				String seler_name = null;
@@ -183,17 +158,23 @@ public class SaleController {
 				}
 				saleService.savePayment(neworderno, amount, seler_name);				
 			}
-			//updateTotalMoney();
-			httpSession.setAttribute("totalmoney", updateTotalMoney());
-			httpSession.setAttribute("successmessage", "支付成功，可继续下一次销售！");
+			//httpSession.setAttribute("totalmoney", updateTotalMoney());
+		//	httpSession.setAttribute("successmessage", "支付成功，可继续下一次销售！");
 		} catch (Exception e) {
-			httpSession.setAttribute("totalmoney", updateTotalMoney());
+			//httpSession.setAttribute("totalmoney", updateTotalMoney());
 			e.printStackTrace();
-			return "error";
+			//return "error";
 		}
-		return "sale";
+		Map<String, Object> map=new HashMap<>();
+		map.put("totalmoney", updateTotalMoney());
+	//	map.put("successmessage", "支付成功，可继续下一次销售！");
+		ModelAndView mv=new ModelAndView("sale", map);
+		return mv;
 	}	
-
+	/**
+	 * 
+	 * 挂账
+	 */
 	@AuthPassport
 	@RequestMapping(value = "hangcredit")
 	public @ResponseBody ResultMessage hangcredit(String customerno,String customername,String telephone,String address,HttpSession httpSession) {	
@@ -232,13 +213,39 @@ public class SaleController {
 			result.setMsg("客户挂账成功");
 		} catch (Exception e) {
 			e.printStackTrace();
-			httpSession.setAttribute("totalmoney", updateTotalMoney());
+		//	httpSession.setAttribute("totalmoney", updateTotalMoney());
 			result.setMsg("客户挂账成功");
 			//return "error";
 		}
 		return result;
-		//return "hangcredit";
 	}
+	
+	/**
+	 * 得到挂账定单的商品销售明细列表
+	 */
+	@RequestMapping(value = "hangcreditcheck")
+	public @ResponseBody Map<String, Object> hangcreditcheck(String hangcustomername,String hangtelephone,HttpSession httpSession) {
+		try {
+			List<Orderdetail> list = saleService.hangcreditcheck(
+					hangcustomername, hangtelephone);
+			
+			httpSession.setAttribute("hangcustomernamestring", hangcustomername);
+			httpSession.setAttribute("hangtelephonestring", hangtelephone);
+			//httpSession.setAttribute("allhangmoneytemp", "0.0");
+			
+			Map<String, Object> map=new HashMap<>();
+	        
+	        map.put("rows",list );
+	        map.put("total", list.size());
+	        return map;
+
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 
 	/**
 	 * 更新总金额
@@ -256,65 +263,21 @@ public class SaleController {
 		DecimalFormat decimalFormat = new DecimalFormat();
 		decimalFormat.applyPattern("0.00");
 		String allsalepriceformat = decimalFormat.format(allsaleprice);
-		//String totalmoney = allsaleprice.toString();
 		System.out.println("doubleallslfkd" + allsaleprice.toString());
 		
 		return allsalepriceformat;
 	}
-	/**
-	 * 返回成功信息
-	 * @param message
-	 */
-	/*private String returnmessage(String message) {
-		//返回成功提示信息
-		Map request=(Map)ActionContext.getContext().get("request");
-		request.put("successmessage", message);
-	}*/
 
-	/**
-	 * 得到挂账定单的商品销售明细列表，暂无法查找，有待解决。。。
-	 */
-	@RequestMapping(value = "hangcreditcheck")
-	// , results = { @Result(name = "saleitem", location = "/sale.jsp") })
-	public @ResponseBody Map<String, Object> hangcreditcheck(String hangcustomername,String hangtelephone,HttpSession httpSession) {
-		try {
-			List<Orderdetail> list = saleService.hangcreditcheck(
-					hangcustomername, hangtelephone);
-			
-			httpSession.setAttribute("hangcustomernamestring", hangcustomername);
-			httpSession.setAttribute("hangtelephonestring", hangtelephone);
-			
-			/*Map maptest = (Map)ActionContext.getContext().getSession();
-			System.out.println("allhangmoney=:"+maptest.get("allhangmoney")+"hangcustomername=:"
-			+maptest.get("hangcustomernamestring")+"hangtelephonestring=:"
-					+maptest.get("hangtelephonestring"));*/
-			//caculateAllHangMoney(list);
-			//writeJson(list.size(), list);
-			Map<String, Object> map=new HashMap<>();
-	        
-	        map.put("rows",list );
-	        map.put("total", list.size());
-	        return map;
-
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-			return null;
-		}
-	}
+	
 	/**
 	 * 计算总金额
-	 * 注意事项，action的方法范围不可以声明为private
-	 * @return
 	 */
-	/*@Action(value = "caculateallhangmoney", results = {
-			@Result(name = "caculateallhangmoney", location = "/hangcredit.jsp"),
-			@Result(name = "error", location = "/hangcredit.jsp") })
-	public String caculateAllHangMoney() {
+	@RequestMapping(value = "caculateallhangmoney")
+	public ModelAndView caculateAllHangMoney(String hangcustomername,String hangtelephone,HttpSession httpSession) {
 		// TODO Auto-generated method stub
+		String allsalepriceformat="";
 		try{
-		List<Orderdetail> list = saleService.hangcreditcheck(
-				this.getHangcustomername(), this.getHangtelephone());
+		List<Orderdetail> list = saleService.hangcreditcheck(hangcustomername,hangtelephone);
 		Double allhangmoney = (double) 0;
 		if (list != null) {
 			for (Orderdetail orderdetail : list) {
@@ -323,41 +286,31 @@ public class SaleController {
 		}
 		DecimalFormat decimalFormat = new DecimalFormat();
 		decimalFormat.applyPattern("0.00");
-		String allsalepriceformat = decimalFormat.format(allhangmoney);
+		 allsalepriceformat = decimalFormat.format(allhangmoney);
 		
-		//String allhangmoneystring = allhangmoney.toString();
 		System.out.println("hangallhangmoney:" + allhangmoney.toString());
-		Map session = (Map) ActionContext.getContext().getSession();		
-		session.put("allhangmoney", allsalepriceformat);
-		
-		Map map1 = (Map) ActionContext.getContext().getSession();
-		String allhangmoney1 = (String) map1.get("allhangmoney");
+	//	httpSession.setAttribute("allhangmoneytemp", allsalepriceformat);
 
-		System.out.println("计算总金额hangallhangmoney=" + allhangmoney1);
-		return "caculateallhangmoney";
+		
 		}catch(Exception e){
 			
 			e.printStackTrace();
-			return "caculateallhangmoney";
 		}
-		
-	}*/
+		Map<String, Object> map=new HashMap<>();
+		map.put("allhangmoneytemp", allsalepriceformat);
+		ModelAndView mv=new ModelAndView("hangcredit", map);
+		return mv;
+	}
 
 	/**
 	 * 客户支付欠账，更新支付状态，生成支付记录
 	 */
-	/*@Action(value = "hangcreditpay", results = {
-			@Result(name = "hangcreditpay", location = "/hangcredit.jsp"),
-			@Result(name = "error", location = "/hangcredit.jsp") })
-	public String hangcreditpay() {
-		
-		 * 如果客户不存在，生产客户号 如果客户不存在，需要生产客户表 生成订单号 已经确认的订单，生产订单表，和订单明细表，以及支付表
-		 
+	@RequestMapping(value = "hangcreditpay")
+	public String hangcreditpay(String hangcustomername,String hangtelephone,HttpSession httpSession) {
 		try {
 			
-				Map<String, Object> session = (Map<String, Object>) ActionContext
-						.getContext().getSession();
-				User user = (User) session.get("user");
+				String username=(String) httpSession.getAttribute("username");
+				User user=userService.getUser(username);
 				String seler_name = null;
 				if (user != null) {
 					seler_name = user.getUsername();
@@ -366,119 +319,20 @@ public class SaleController {
 					seler_name="无名";
 				}				
 				
-				saleService.hangPay(this.getHangcustomername(), this.getHangtelephone(), seler_name);
-				//Map<String, Object> map = new HashMap<String, Object>();
-				Map session1 = (Map) ActionContext.getContext().getSession();
-				session1.put("allhangmoney", "0");
-				session1.put("hangcustomernamestring", "");
-				session1.put("hangtelephonestring", "");
-				
-				Map maptest = (Map)ActionContext.getContext().getSession();
-				System.out.println("确认之后allhangmoney=:"+maptest.get("allhangmoney")+"确认之后hangcustomername=:"
-				+maptest.get("hangcustomernamestring")+"确认之后hangtelephonestring=:"
-						+maptest.get("hangtelephonestring"));
-				returnmessage("挂账支付成功，可进行下一次挂账支付！");
+				saleService.hangPay(hangcustomername, hangtelephone, seler_name);
+				httpSession.setAttribute("successmessage", "挂账支付成功，可进行下一次挂账支付！");
 				
 		} catch (Exception e) {
 			updateTotalMoney();
 			e.printStackTrace();
 			return "error";
 		}
-		return "hangcreditpay";
+		return "hangcredit";
 	}
-*/
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-	public String getCustomerno() {
-		return customerno;
-	}
-
-	public void setCustomerno(String customerno) {
-		this.customerno = customerno;
-	}
-
-	public String getDiscount() {
-		return discount;
-	}
-
-	public void setDiscount(String discount) {
-		this.discount = discount;
-	}
-
-	public String getProductno() {
-		return productno;
-	}
-
-	public void setProductno(String productno) {
-		this.productno = productno;
-	}
-
-	public Bill getBill() {
-		return bill;
-	}
-
-	public void setBill(Bill bill) {
-		this.bill = bill;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getPaystate() {
-		return paystate;
-	}
-
-	public void setPaystate(int paystate) {
-		this.paystate = paystate;
-	}
-
-	public String getCustomername() {
-		return customername;
-	}
-
-	public void setCustomername(String customername) {
-		this.customername = customername;
-	}
-
-	public String getTelephone() {
-		return telephone;
-	}
-
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getHangcustomername() {
-		return hangcustomername;
-	}
-
-	public void setHangcustomername(String hangcustomername) {
-		this.hangcustomername = hangcustomername;
-	}
-
-	public String getHangtelephone() {
-		return hangtelephone;
-	}
-
-	public void setHangtelephone(String hangtelephone) {
-		this.hangtelephone = hangtelephone;
-	}
-	
-	
 
 }

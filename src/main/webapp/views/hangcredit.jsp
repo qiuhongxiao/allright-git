@@ -1,34 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" 
 	 %>
-<%-- <%
+ <%
     String contextPath = request.getContextPath();
     request.setCharacterEncoding("UTF-8");
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
    //Map map = (Map)ActionContext.getContext().getParameters();    
-    String allhangmoney=(String)session.getAttribute("allhangmoney");
-    String hangcustomernamestring = (String)session.getAttribute("hangcustomernamestring");
-    String hangtelephonestring =(String)session.getAttribute("hangtelephonestring");
+    String allhangmoney=(String)request.getAttribute("allhangmoneytemp");
+   // String hangcustomernamestring = (String)session.getAttribute("hangcustomernamestring");
+  //  String hangtelephonestring =(String)session.getAttribute("hangtelephonestring");
 //    out.println(""+allhangmoney);
 //    out.println(""+hangcustomernamestring);
 //    out.println(""+hangtelephonestring);
+   out.println("到底有没有刷新:"+allhangmoney);
     if(allhangmoney==null){
     	allhangmoney="0.0";
-    }
-    if(hangcustomernamestring==null){
-    	hangcustomernamestring="";
-    }
-    if(hangtelephonestring==null){
-    	hangtelephonestring="";
-    }
+    } 
+    out.println("判断后："+allhangmoney);
     
-    Map map1 = (Map)ActionContext.getContext().get("request");   
-    String successmessage=(String)map1.get("successmessage");
-    //out.println("到底有没有刷新1"+totalmoney);
-    if(successmessage==null){
-     	successmessage="";
-     }
-%> --%>
+%>  
 <html>
 <head>
 <meta charset="UTF-8">
@@ -94,7 +84,7 @@
 	   	 }else{
 		var hangcustomername = document.getElementById("hangcustomername").value;
 		var hangtelephone = document.getElementById("hangtelephone").value;
-		var h = "caculateallhangmoney.action?hangcustomername="
+		var h = "http://localhost:8080/allright-git/caculateallhangmoney?hangcustomername="
 				+ hangcustomername + "&hangtelephone=" + hangtelephone;
 		document.getElementById("caculateallhangmoney").href = h;
 	   	 }
@@ -108,7 +98,7 @@
    	 }else{
 		var hangcustomername = document.getElementById("hangcustomername").value;
 		var hangtelephone = document.getElementById("hangtelephone").value;
-		var h = "hangcreditpay.action?hangcustomername=" + hangcustomername
+		var h = "http://localhost:8080/allright-git/hangcreditpay?hangcustomername=" + hangcustomername
 				+ "&hangtelephone=" + hangtelephone;
 		document.getElementById("hangpay").href = h;
    	 }
@@ -124,9 +114,7 @@
 	function retail() {
 		var pay = document.getElementById("pay").value;
 
-		var total =
-<%-- <%=allhangmoney%> --%>
-	;
+		var total =<%=allhangmoney%>;
 		var change = pay - total;
 		var change1=change.toFixed(2);
 		document.getElementById("change").value = change1;
@@ -134,18 +122,11 @@
 </script>
 </head>
 <body>
-	<!--     <div id="tb" style="padding:3px;background-color:#ccddaa;" > -->
-
-	<!-- 		<form id="form2"  method="post"><span>Product Name:</span><input id="productnamesearch" name="productnamesearch" type="text" size="20" required="required"  style="line-height:20px;border:1px solid #ccc ">	 -->
-	<!-- 			<a href="#" class="easyui-linkbutton" plain="true" onclick="doSearch()">搜索产品</a> -->
-	<!-- 		</form>	 -->
-
-	<!-- 	    </div> -->
 	<div style="padding: 3px; background-color: #ccddaa; font-size: 20;">
-		<div style="padding: 15px; font-size: 45;">
+		<div style="padding: 10px; font-size: 45;">
 			<a id="caculateallhangmoney" class="easyui-linkbutton" onclick="caculateallhangmoney()"
 				data-options="iconCls:'icon-ok',plain:true"
-				style="border: 3px solid #999999; background-color: #ccddaa; width: 220px; height: 60px; font-size: 38px"><label style="font-size: 30px">金额总计:</label></a>&nbsp;${allhangmoney }&nbsp;&nbsp;<label style="font-size: 35;">支付:</label><input
+				style="border: 3px solid #999999; background-color: #ccddaa; width: 220px; height: 60px; font-size: 38px"><label style="font-size: 30px">计算总价:</label></a>&nbsp;<%=allhangmoney %> &nbsp;&nbsp;<label style="font-size: 35;">支付:</label><input
 				id="pay" type="text"
 				style="border: none; background-color: #ccddaa; width: 160px; height: 60px; font-size: 50px" onkeyup="if(isNaN(value))execCommand('undo')">
 			<button onclick="retail()"
@@ -168,7 +149,7 @@
 
 			&nbsp;&nbsp;<a id="hangpay" class="easyui-linkbutton" onclick="hangpay()"
 				data-options="iconCls:'icon-ok',plain:true"
-				style="border: 2px #999999 solid"><label style="font-size: 20px">支付完成</label></a>&nbsp;&nbsp;&nbsp;&nbsp;<label style="color:red;font-size:23px"><%-- <%=successmessage%> --%></label>
+				style="border: 2px #999999 solid"><label style="font-size: 20px">支付完成</label></a>&nbsp;&nbsp;&nbsp;&nbsp;<label style="color:red;font-size:23px">${successmessage}</label>
 
 			<br>
 		</div>
