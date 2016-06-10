@@ -143,7 +143,6 @@
                  },
                  success: function(result){
                 	 try{
-                	 console.dir(result);
                      var result = eval('('+result+')');
                      if (result.success){
                          closeDialog();// 调用closeDialog;    
@@ -161,36 +160,10 @@
                 	 }catch(e){
                 		 window.location.replace("error.jsp");
                 	 }
+                     
+                     
                  }
-             }); 
-             
-             
-             /*  var productno=$("#productno").val();var productname=$("#productname").val();
-             var description=$("#description").val();var price=$("#price").val();
-             var producttype_id=$("#cc").val();var stockquantity=$("#stockquantity").val();
-             
-     		$.ajax( {
-     			type : "get",
-     			url : "http://localhost:8080/allright-git/productadd",
-     			data : "productno="+productno+"&productname="+productname+"&description="+description+"&price="+price+"&producttype_id="+producttype_id+"&stockquantity="+stockquantity,
-     			dataType: 'json',
-     			success: function(result){
-                    var result = eval('('+result+')');
-                    if (result.success){
-                        closeDialog();// 调用closeDialog;    
-                        reload();// 重新加载
-                        $.messager.show({    //显示正确信息
-                            title: '提示',
-                            msg: result.msg
-                        });
-                    } else {              
-                        $.messager.show({   //显示错误信息
-                            title: '错误',
-                            msg: result.msg
-                        });
-                    }
-                }
-     		});  */
+             });
          }
          /*提交修改的数据*/
          function change(editid){
@@ -201,7 +174,6 @@
                  },
                  success: function(result){
                 	 try{
-                	 console.dir(result);
                      var result = eval('('+result+')');
                      if (result.success){
                          closeDialog();// 调用closeDialog;    
@@ -219,10 +191,9 @@
                 	 }catch(e){
                 		 window.location.replace("error.jsp");
                 	 }
+                     
+                     
                  }
-                	
-                	
-                	
              });
          }
          /* 删除数据*/
@@ -277,30 +248,30 @@
 		</form>	
 		
 	    </div>
-    <div style="width:100%;height:90%;padding:0px;overflow:hidden" >
-        <table id="grid" background="<%=request.getContextPath() %>/views/5.gif"></table>
+    <div style="width:100%;height:90%;padding:0px;overflow:hidden">
+        <table id="grid"></table>
     </div>
     <div id="dialog" data-options="closed:true" class="easyui-dialog" title="产品管理" style="width:300px;height:300px;text-align:center" >
-              <form id="form" method="get">
+              <form id="form" method="post">
               <br>
                      <div>
                         <label>产品编号</label>
-                        <input id="productno" name="productno"  class="easyui-validatebox" data-options="required:true,missingMessage:'产品编号描述为必填项'"  />
+                        <input name="productno"  class="easyui-validatebox" data-options="required:true,missingMessage:'产品编号描述为必填项'"  />
                  </div>
                  <br>
                  <div>
                         <label>产品名称</label>
-                        <input id="productname" name="productname"  class="easyui-validatebox" data-options="required:true,missingMessage:'产品名称描述为必填项，不能为空'"  />
+                        <input name="productname"  class="easyui-validatebox" data-options="required:true,missingMessage:'产品名称描述为必填项，不能为空'"  />
                  </div>
                  <br>
                  <div>
                         <label>产品描述</label>
-                        <input id="description" name="description" data-options="required:false" />
+                        <input name="description" data-options="required:false" />
                  </div>
                  <br>
                  <div>
                         <label>产品价格</label>
-                        <input id="price" name="price"  class="easyui-validatebox" data-options="required:true,missingMessage:'产品价格描述为必填项，数值类型'" onkeyup="if(isNaN(value))execCommand('undo')" onpaste="return false"  onafterpaste="if(isNaN(value))execCommand('undo')"/>
+                        <input name="price"  class="easyui-validatebox" data-options="required:true,missingMessage:'产品价格描述为必填项，数值类型'" onkeyup="if(isNaN(value))execCommand('undo')" onpaste="return false"  onafterpaste="if(isNaN(value))execCommand('undo')"/>
                  </div>   
                  <br>          
                  <div>
@@ -312,7 +283,7 @@
                         <label>库存量</label>
                         <!-- <input name="stockquantity"  class="easyui-validatebox" data-options="required:true,missingMessage:'产品库存描述为必填项，整数类型'" onkeyup="this.value=this.value.replace(/\D/g,'')" onpaste="return false"  onafterpaste="this.value=this.value.replace(/\D/g,'')"/> -->
                         
-                         <input id="stockquantity" name="stockquantity"  class="easyui-validatebox" data-options="required:true,missingMessage:'产品库存描述为必填项，整数类型'" onkeyup="if(isNaN(value))execCommand('undo')" onpaste="return false"  onafterpaste="if(isNaN(value))execCommand('undo')"/>
+                         <input name="stockquantity"  class="easyui-validatebox" data-options="required:true,missingMessage:'产品库存描述为必填项，整数类型'" onkeyup="if(isNaN(value))execCommand('undo')" onpaste="return false"  onafterpaste="if(isNaN(value))execCommand('undo')"/>
                  </div>   
                  <br>                    
               </form>
