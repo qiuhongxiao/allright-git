@@ -12,10 +12,9 @@
     <script type="text/javascript" src="<%=request.getContextPath() %>/js/treeandmenu.js"></script>
 </head>
 <body class="easyui-layout"  >
-	 <bgsound src="url" loop="-1">
-     <EMBED src="url" autostart="true" loop="true" width="80" height="20"  playbutton="true"> 
+	 
     <div id="head" data-options="region:'north'" style="height:60px;">
-        <div style="height:30px;font-size:30px;background-color:pink;text-align:center;"><label style="font-size:43px;weight:53px;"><font face="华文彩云" size =6 color =blue>水果君pos系统</font></label></div>
+        <div background:"5.gif" style="height:30px;font-size:30px;text-align:center;"><label style="font-size:43px;weight:53px;"><font face="华文彩云" size =6 color =blue>水果君pos系统</font></label></div>
         <div style="text-align: right;background-color:pink;">
           <label style="font-size:23px">${username }</label>&nbsp;<a href="logout.action" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">退出</a>
             <a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#theme',iconCls:'icon-filter'">主题</a>
