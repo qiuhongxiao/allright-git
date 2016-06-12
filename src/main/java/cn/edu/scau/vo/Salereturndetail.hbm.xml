@@ -23,7 +23,7 @@
         <property name="returnmoney" type="double">
             <column name="RETURNMONEY" />
         </property>
-        <property name="returnquantity" type="int">
+        <property name="returnquantity" type="double">
             <column name="RETURNQUANTITY" />
         </property>
         <property name="returntime" type="java.sql.Timestamp">

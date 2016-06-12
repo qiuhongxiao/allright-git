@@ -10,7 +10,7 @@ public class Salereturndetail implements Serializable {
 	private String productname;
 	private double price;
 	private double returnmoney;
-	private int returnquantity;
+	private double returnquantity;
 	private Timestamp returntime;
 	private String order_no;
 	public int getId() {
@@ -49,10 +49,10 @@ public class Salereturndetail implements Serializable {
 	public void setReturnmoney(double returnmoney) {
 		this.returnmoney = returnmoney;
 	}
-	public int getReturnquantity() {
+	public double getReturnquantity() {
 		return returnquantity;
 	}
-	public void setReturnquantity(int returnquantity) {
+	public void setReturnquantity(double returnquantity) {
 		this.returnquantity = returnquantity;
 	}
 	public Timestamp getReturntime() {
