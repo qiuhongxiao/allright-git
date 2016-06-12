@@ -122,7 +122,7 @@ public class SaleServiceImpl implements SaleService {
 	}
 
 	@Override
-	public void saveBill(String productno, String discount) throws Exception {
+	public void saveBill(String productno, String discount,double quantity) throws Exception {
 		// TODO Auto-generated method stub
 		String hql = "from Bill b where b.productno='" + productno + "'";
 		// 要对获取的对象进行操作，不能新建一个新的Bill对象，否则就会出现如下错误
@@ -139,9 +139,9 @@ public class SaleServiceImpl implements SaleService {
 			existbill.setPrice(product.getPrice());
 			double newdiscount = Double.parseDouble(discount);
 			existbill.setDiscount(newdiscount);
-			double newsaleprice = (newdiscount * product.getPrice()) / 100;
+			double newsaleprice = (newdiscount * product.getPrice()*quantity) / 100;
 			existbill.setSaleprice(newsaleprice);
-			existbill.setQuantity(1);
+			existbill.setQuantity(quantity);
 			billDao.save(existbill);
 		} else {
 			// existbill.setId(existbill.getId());
@@ -150,12 +150,12 @@ public class SaleServiceImpl implements SaleService {
 			// bill.setPrice(existbill.getPrice());
 			double price = existbill.getPrice();
 			double discount1 = Double.parseDouble(discount);
-			double addsaleprice = (price * discount1) / 100;			
+			double addsaleprice = (price * discount1*quantity) / 100;			
 			double newdiscount = (existbill.getSaleprice() + addsaleprice)
-					/ (price * (existbill.getQuantity() + 1));
+					/ (price * (existbill.getQuantity() + quantity));
 			existbill.setSaleprice(existbill.getSaleprice() + addsaleprice);
 			existbill.setDiscount(newdiscount * 100);
-			existbill.setQuantity(existbill.getQuantity() + 1);
+			existbill.setQuantity(existbill.getQuantity() + quantity);
 			billDao.update(existbill);
 		}
 

@@ -23,7 +23,7 @@
         <property name="saleprice" type="double">
             <column name="SALEPRICE" />
         </property>
-        <property name="quantity" type="int">
+        <property name="quantity" type="double">
             <column name="QUANTITY" />
         </property>
     </class>

@@ -22,7 +22,7 @@
         </property>
         <many-to-one name="producttype"  column="producttype_id" class="cn.edu.scau.vo.Producttype"  lazy="false" cascade="all">
         </many-to-one>
-        <property name="stockquantity" type="int">
+        <property name="stockquantity" type="double">
             <column name="STOCKQUANTITY" />
         </property>
     </class>

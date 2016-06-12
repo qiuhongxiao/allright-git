@@ -21,7 +21,7 @@ public class Productmodel implements java.io.Serializable {
 	
 	private String producttypename;
 	
-	private int stockquantity;
+	private double stockquantity;
 
 	public Productmodel() {
 		super();
@@ -108,11 +108,11 @@ public class Productmodel implements java.io.Serializable {
 		this.producttypename = producttypename;
 	}
 
-	public int getStockquantity() {
+	public double getStockquantity() {
 		return stockquantity;
 	}
 
-	public void setStockquantity(int stockquantity) {
+	public void setStockquantity(double stockquantity) {
 		this.stockquantity = stockquantity;
 	}
 	

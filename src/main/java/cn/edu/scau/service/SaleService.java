@@ -12,7 +12,7 @@ public interface SaleService {
 
 	public boolean saleItemRemove(int id);
 
-	public void saveBill(String productno,String discount) throws Exception;
+	public void saveBill(String productno,String discount,double quantity) throws Exception;
 
 	public Bill getBill(String productno);
 

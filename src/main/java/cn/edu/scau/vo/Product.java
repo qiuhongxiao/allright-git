@@ -14,7 +14,7 @@ public class Product implements java.io.Serializable{
 	
 	private Producttype producttype;
 	
-	private int stockquantity;
+	private double stockquantity;
 	
 	//private int producttype_id;
 
@@ -84,11 +84,11 @@ public class Product implements java.io.Serializable{
 	public void setProducttype(Producttype producttype) {
 		this.producttype = producttype;
 	}
-	public int getStockquantity() {
+	public double getStockquantity() {
 		return stockquantity;
 	}
 
-	public void setStockquantity(int stockquantity) {
+	public void setStockquantity(double stockquantity) {
 		this.stockquantity = stockquantity;
 	}
 	

@@ -86,11 +86,11 @@ public class SaleController {
 	
 	@AuthPassport
 	@RequestMapping(value = "saleitemadd")
-	public ModelAndView saleitemadd(String productno,String discount) {
+	public ModelAndView saleitemadd(String productno,String discount,double quantity) {
 		
 		 
 		try {
-			saleService.saveBill(productno, discount);
+			saleService.saveBill(productno, discount,quantity);
 		} catch (Exception e) {
 			e.printStackTrace();
 			updateTotalMoney();

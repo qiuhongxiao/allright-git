@@ -8,7 +8,7 @@ public class Bill implements Serializable {
 	private double price;
 	private double discount;
 	private double saleprice;
-	private int quantity;
+	private double quantity;
 	
 	public int getId() {
 		return id;
@@ -46,10 +46,10 @@ public class Bill implements Serializable {
 	public void setSaleprice(double saleprice) {
 		this.saleprice = saleprice;
 	}
-	public int getQuantity() {
+	public double getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(int quantity) {
+	public void setQuantity(double quantity) {
 		this.quantity = quantity;
 	}
 	

@@ -10,7 +10,7 @@ public class Orderdetail implements Serializable {
 	private double price;
 	private double saleprice;
 	private double discount;
-	private int quantity;
+	private double quantity;
 	private String saletime;
 	
 	
@@ -60,10 +60,10 @@ public class Orderdetail implements Serializable {
 	public void setDiscount(double discount) {
 		this.discount = discount;
 	}
-	public int getQuantity() {
+	public double getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(int quantity) {
+	public void setQuantity(double quantity) {
 		this.quantity = quantity;
 	}
 	public String getSaletime() {
